@@ -1,25 +1,29 @@
 name: deploy
-on: [push , workflow_dispatch] # Trigger on push and manual dispatch
+
+on: [push, workflow_dispatch] # ✅ Remove space before comma
+
 jobs:
-    deploy:
-        runs-on: ubuntu-latest
-        steps:
-            - name: Checkout code
-              uses: actions/checkout@v4
+  deploy:
+    runs-on: ubuntu-latest
 
-            - name: Install Nodejs
-              uses: actions/setup-node@v4
-              with: 
-                node-version: 20
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-            - name: Print version
-              run: node -v
+      - name: Install Nodejs
+        uses: actions/setup-node@v4
+        with: 
+          node-version: 20
 
-            - name: Install dependencies
-              run: npm ci # Install dependencies using npm ci uses package lock file
+      - name: Print version
+        run: node -v
 
-            - name: Run tests
-              run: npm test # Run tests using npm test
+      - name: Install dependencies
+        run: npm ci # ✅ Requires package-lock.json
+
+      - name: Run tests
+        run: npm test # ✅ Requires test script in package.json
+
 
 
               
